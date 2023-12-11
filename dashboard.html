@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard - Platform Design</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #3498db;
+        }
+
+        .welcome-note {
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .property-card {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .wishlist-btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .wishlist-section {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1em 0;
+            background-color: #3498db;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>PlatForm Design</h1>
+    </header>
+
+    <section>
+        <div class="welcome-note">
+            <h2>Welcome to Your Buyer Dashboard!</h2>
+            <p>Thank you for choosing us. Start your search below.</p>
+        </div>
+
+        <div class="search-bar">
+            <!-- Add search bar code here -->
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+
+        <!-- Property Cards (Dummy Data) -->
+        <div class="property-card" onclick="redirectToPropertyDetails()">
+            <div>
+                <h3>Luxurious Beachfront Villa</h3>
+                <p>Description: Enjoy breathtaking ocean views from this spacious and elegant villa. With direct beach access and modern amenities, this property is perfect for those seeking a luxurious coastal lifestyle.</p>
+            </div>
+            <button class="wishlist-btn" onclick="addToWishlist()">Add to Wishlist</button>
+        </div>
+
+        <div class="property-card" onclick="redirectToPropertyDetails()">
+            <div>
+                <h3>Downtown Loft with City Views</h3>
+                <p>Description: Experience urban living at its finest in this stylish downtown loft. Panoramic city views, open floor plan, and proximity to local hotspots make this property an ideal choice for city dwellers.</p>
+            </div>
+            <button class="wishlist-btn" onclick="addToWishlist()">Add to Wishlist</button>
+        </div>
+
+        <!-- Add more property cards as needed -->
+
+        <!-- Wishlist Section -->
+        <div class="wishlist-section">
+            <h2>Your Wishlist</h2>
+            <!-- Wishlist Cards (Dummy Data) -->
+
+
+            <!-- Add more wishlist cards as needed -->
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2023 Your Company Name. All rights reserved.
+    </footer>
+
+    <script>
+        function redirectToPropertyDetails() {
+            // Implement redirection logic to the property details page
+            console.log("Redirecting to property details...");
+        }
+
+        function addToWishlist(propertyCard) {
+            // Get the property details from the clicked property card
+            const propertyTitle = propertyCard.querySelector('h3').textContent;
+            const propertyDescription = propertyCard.querySelector('p').textContent;
+
+            // Create a new wishlist card
+            const wishlistCard = document.createElement('div');
+            wishlistCard.classList.add('property-card');
+
+            const propertyDetails = document.createElement('div');
+            propertyDetails.innerHTML = `<h3>${propertyTitle} (Wishlist)</h3><p>${propertyDescription}</p>`;
+
+            wishlistCard.appendChild(propertyDetails);
+
+            // Append the wishlist card to the wishlist section
+            const wishlistSection = document.querySelector('.wishlist-section');
+            wishlistSection.appendChild(wishlistCard);
+
+            // Optionally, you can remove the "Add to Wishlist" button from the property card
+            propertyCard.querySelector('.wishlist-btn').style.display = 'none';
+
+            console.log("Property added to wishlist!");
+        }
+
+        // Add event listeners to property cards to call addToWishlist() when clicked
+        const propertyCards = document.querySelectorAll('.property-card');
+        propertyCards.forEach(card => {
+            const wishlistButton = card.querySelector('.wishlist-btn');
+            wishlistButton.addEventListener('click', () => addToWishlist(card));
+        });
+    </script>
+</body>
+</html>
