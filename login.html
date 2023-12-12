@@ -85,7 +85,7 @@
 
     <section>
         <h2>Login</h2>
-        <form>
+        <form id="loginForm">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
 
@@ -95,12 +95,46 @@
             <input type="submit" value="Login">
         </form>
 
+        <p id="loginError" style="color: red;"></p>
         <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
     </section>
 
     <footer>
-        &copy; 2023 PlatForm Design. All rights reserved.
+        &copy; 2023 Your Company Name. All rights reserved.
     </footer>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Simulate user authentication 
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Replace this with actual user verification logic (e.g., check against a database)
+            const isUserVerified = verifyUser(username, password);
+
+            if (isUserVerified) {
+                // Redirect to the buyer dashboard upon successful login
+                window.location.href = 'dashboard.html';
+            } else {
+                // Display an error message for an unsuccessful login
+                loginError.textContent = 'Invalid username or password. Please try again.';
+            }
+        });
+
+
+        function verifyUser(username, password) {
+            // Example: Simple username/password check
+            const validUsername = 'exampleUser';
+            const validPassword = 'examplePassword';
+
+            return username === validUsername && password === validPassword;
+        }
+    </script>
 
 </body>
 </html>
